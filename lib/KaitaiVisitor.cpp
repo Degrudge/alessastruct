@@ -173,7 +173,7 @@ void KaitaiVisitor::getFieldTypeName(FieldDecl* fieldDecl, QualType valueType,
 
   TypeInfo desugaredTypeInfo = context.getTypeInfo(desugaredType);
   uint64_t desugaredTypeSize = fieldIsBitField ? fieldDecl->getBitWidthValue()
-                                               : desugaredTypeInfo.Width >> 3;
+                                               : desugaredTypeInfo.Width;
 
   std::string typeString;
   auto* type = desugaredType.getTypePtr();

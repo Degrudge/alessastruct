@@ -217,17 +217,17 @@ std::string KaitaiSerializer::asKaitaiType(const clang::Type* type, size_t size,
     } else if (!type->hasIntegerRepresentation()) {
       return std::string("");
     } else {
-      if (size == 16) {
+      if (size == 128) {
         this->needsU128Type = true;
         return std::string("u16");
       }
 
-          primitiveType[0] = !isBitfield
-            ? type->isUnsignedIntegerType() ? 'u' : 's'
-            : 'b';
+      primitiveType[0] = !isBitfield
+        ? type->isUnsignedIntegerType() ? 'u' : 's'
+        : 'b';
     }
 
-    snprintf(primitiveType + 1, MAX_TYPE_STRING_LENGTH - 1, "%zu", size);
+    snprintf(primitiveType + 1, MAX_TYPE_STRING_LENGTH - 1, "%zu", isBitfield ? size : (size >> 3));
   }
 
   return std::string(primitiveType);
