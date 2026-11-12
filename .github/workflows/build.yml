@@ -28,6 +28,6 @@ jobs:
        cmake -G Ninja ../llvm -DLLVM_ENABLE_PROECT="clang;clang-tools-extra" \
        -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=ON
     - name: Build Clang
-      working-directory: llvm
+      working-directory: llvm/build
       run: |
         ninja; ninja install
