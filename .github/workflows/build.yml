@@ -16,13 +16,14 @@ jobs:
     - name: dependencies
       run: sudo apt install -y ninja-build
     - name: Clone llvm
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: llvm/llvm-project
         path: llvm
+    
     - name: CMake on Clang
-     working-diretory: llvm
-     run: |
+      working-directory: llvm
+      run: |
        mkdir build && cd build; \
        cmake -G Ninja ../llvm -DLLVM_ENABLE_PROECT="clang;clang-tools-extra" \
        -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=ON
