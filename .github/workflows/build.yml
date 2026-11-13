@@ -36,13 +36,10 @@ jobs:
        cmake -G Ninja ../llvm -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" \
        -DLLVM_TARGETS_TO_BUILD=X86 -DCMAKE_BUILD_TYPE=Release \
        -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
-    - name: Build Clang
+       
+    - name: Build alessastruct
       working-directory: llvm/build
       run: ninja alessastruct
-
-    - name: (test) check dir
-      working-directory: llvm/build/bin
-      run: ls -la
 
     - name: Upload Artifact
       uses: actions/upload-artifact@main
