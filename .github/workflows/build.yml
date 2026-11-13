@@ -41,4 +41,10 @@ jobs:
     - name: (test) check dir
       working-directory: llvm/build/bin
       run: ls -la
+
+    - name: Archive Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: alessastruct-bin
+        path: llvm/build/bin/alessastruct
       
