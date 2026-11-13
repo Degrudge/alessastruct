@@ -38,7 +38,7 @@ jobs:
        -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
     - name: Build Clang
       working-directory: llvm/build
-      run: ninja
+      run: ninja alessastruct
 
     - name: (test) check dir
       working-directory: llvm/build/bin
