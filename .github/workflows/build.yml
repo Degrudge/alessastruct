@@ -1,10 +1,7 @@
 name: build
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -12,16 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@main
     - name: dependencies
       run: sudo apt install -y ninja-build
     - name: Clone llvm
-      uses: actions/checkout@v4
+      uses: actions/checkout@main
       with:
         repository: llvm/llvm-project
         path: llvm
     - name: Clone alessastruct
-      uses: actions/checkout@v4
+      uses: actions/checkout@main
       with:
         repository: Degrudge/alessastruct
         path: llvm/clang-tools-extra/alessastruct
@@ -42,7 +39,7 @@ jobs:
       working-directory: llvm/build/bin
       run: ls -la
 
-    - name: Archive Artifact
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: alessastruct-bin
