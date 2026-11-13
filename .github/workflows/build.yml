@@ -32,7 +32,7 @@ jobs:
       working-directory: llvm
       run: |
        mkdir build && cd build; \
-       cmake -G Ninja ../llvm -DLLVM_ENABLE_PROECT="clang;clang-tools-extra" \
+       cmake -G Ninja ../llvm -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" \
        -DLLVM_TARGETS_TO_BUILD=X86 -DCMAKE_BUILD_TYPE=Release
     - name: Build Clang
       working-directory: llvm/build
