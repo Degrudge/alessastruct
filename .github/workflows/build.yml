@@ -20,7 +20,7 @@ jobs:
     - name: Clone alessastruct
       uses: actions/checkout@main
       with:
-        repository: Degrudge/alessastruct
+        repository: dreamingmoths/alessastruct
         path: llvm/clang-tools-extra/alessastruct
     - name: Add alessastruct to CMakeList
       working-directory: llvm/clang-tools-extra
