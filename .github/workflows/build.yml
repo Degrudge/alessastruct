@@ -20,15 +20,25 @@ jobs:
       with:
         repository: llvm/llvm-project
         path: llvm
+    - name: Clone alessastruct
+      uses: actions/checkout@v4
+      with:
+        repository: Degrudge/alessastruct
+        path: llvm/clang-tools-extra/alessastruct
+    - name: Add alessastruct to CMakeList
+      working-directory: llvm/clang-tools-extra
+      run: echo "add_subdirectory(alessastruct)" >> CMakeLists.txt
+    - name: run CMake
+      working-directory: llvm
+      run: |
+       mkdir build && cd build; \
+       cmake -G Ninja ../llvm -DLLVM_ENABLE_PROECT="clang;clang-tools-extra" \
+       -DLLVM_TARGETS_TO_BUILD=X86 -DCMAKE_BUILD_TYPE=Release
+    - name: Build Clang
+      working-directory: llvm/build
+      run: ninja
+
     - name: (test) check dir
+      working-directory: llvm/build/bin
       run: ls -la
-    # - name: CMake on Clang
-    #   working-directory: llvm
-    #   run: |
-    #    mkdir build && cd build; \
-    #    cmake -G Ninja ../llvm -DLLVM_ENABLE_PROECT="clang;clang-tools-extra" \
-    #    -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=ON
-    # - name: Build Clang
-    #   working-directory: llvm/build
-    #   run: |
-    #     ninja; ninja install
+      
